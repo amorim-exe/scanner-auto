@@ -1,0 +1,371 @@
+﻿<UserControl x:Class="OBD2Scanner.SensorsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="Transparent">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Margin="0,4,0,20">
+
+            <StackPanel Orientation="Horizontal">
+
+                <TextBlock Text="AutoScan"
+                           FontSize="22"
+                           FontWeight="SemiBold"
+                           Foreground="{DynamicResource AccentBrush}"/>
+
+                <TextBlock Text=" SENSORS"
+                           FontSize="22"
+                           FontWeight="SemiBold"
+                           Foreground="{DynamicResource TextBrush}"/>
+
+            </StackPanel>
+
+            <TextBlock Text="Live OBD2 sensor parameters"
+                       FontSize="11"
+                       Foreground="{DynamicResource SecondaryTextBrush}"
+                       Margin="0,4,0,0"/>
+
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Row="0"
+                    Grid.Column="0"
+                    Margin="0,0,7,7"
+                    Padding="20"
+                    Background="{DynamicResource SurfaceBrush}"
+                    BorderBrush="{DynamicResource BorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="12">
+
+                <StackPanel>
+                    <TextBlock Text="THROTTLE POSITION"
+                               FontSize="10"
+                               Foreground="{DynamicResource SecondaryTextBrush}"/>
+
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,12,0,0">
+
+                        <TextBlock x:Name="ThrottleText"
+                                   Text="---"
+                                   FontSize="30"
+                                   FontWeight="SemiBold"/>
+
+                        <TextBlock Text="%"
+                                   FontSize="10"
+                                   Foreground="{DynamicResource SecondaryTextBrush}"
+                                   VerticalAlignment="Bottom"
+                                   Margin="6,0,0,5"/>
+
+                    </StackPanel>
+                </StackPanel>
+
+            </Border>
+
+            <Border Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="7,0"
+                    Padding="20"
+                    Background="{DynamicResource SurfaceBrush}"
+                    BorderBrush="{DynamicResource BorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="12">
+
+                <StackPanel>
+                    <TextBlock Text="MAP PRESSURE"
+                               FontSize="10"
+                               Foreground="{DynamicResource SecondaryTextBrush}"/>
+
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,12,0,0">
+
+                        <TextBlock x:Name="MapText"
+                                   Text="---"
+                                   FontSize="30"
+                                   FontWeight="SemiBold"/>
+
+                        <TextBlock Text="kPa"
+                                   FontSize="10"
+                                   Foreground="{DynamicResource SecondaryTextBrush}"
+                                   VerticalAlignment="Bottom"
+                                   Margin="6,0,0,5"/>
+
+                    </StackPanel>
+                </StackPanel>
+
+            </Border>
+
+            <Border Grid.Row="0"
+                    Grid.Column="2"
+                    Margin="7,0,0,7"
+                    Padding="20"
+                    Background="{DynamicResource SurfaceBrush}"
+                    BorderBrush="{DynamicResource BorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="12">
+
+                <StackPanel>
+                    <TextBlock Text="INTAKE AIR TEMP"
+                               FontSize="10"
+                               Foreground="{DynamicResource SecondaryTextBrush}"/>
+
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,12,0,0">
+
+                        <TextBlock x:Name="IatText"
+                                   Text="---"
+                                   FontSize="30"
+                                   FontWeight="SemiBold"/>
+
+                        <TextBlock Text="°C"
+                                   FontSize="10"
+                                   Foreground="{DynamicResource SecondaryTextBrush}"
+                                   VerticalAlignment="Bottom"
+                                   Margin="6,0,0,5"/>
+
+                    </StackPanel>
+                </StackPanel>
+
+            </Border>
+
+            <Border Grid.Row="1"
+                    Grid.Column="0"
+                    Margin="0,7,7,0"
+                    Padding="20"
+                    Background="{DynamicResource SurfaceBrush}"
+                    BorderBrush="{DynamicResource BorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="12">
+
+                <StackPanel>
+                    <TextBlock Text="STFT BANK 1"
+                               FontSize="10"
+                               Foreground="{DynamicResource SecondaryTextBrush}"/>
+
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,12,0,0">
+
+                        <TextBlock x:Name="StftText"
+                                   Text="---"
+                                   FontSize="30"
+                                   FontWeight="SemiBold"
+                                   Foreground="{DynamicResource AccentBrush}"/>
+
+                        <TextBlock Text="%"
+                                   FontSize="10"
+                                   Foreground="{DynamicResource SecondaryTextBrush}"
+                                   VerticalAlignment="Bottom"
+                                   Margin="6,0,0,5"/>
+
+                    </StackPanel>
+                </StackPanel>
+
+            </Border>
+
+            <Border Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="7,7,7,0"
+                    Padding="20"
+                    Background="{DynamicResource SurfaceBrush}"
+                    BorderBrush="{DynamicResource BorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="12">
+
+                <StackPanel>
+                    <TextBlock Text="LTFT BANK 1"
+                               FontSize="10"
+                               Foreground="{DynamicResource SecondaryTextBrush}"/>
+
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,12,0,0">
+
+                        <TextBlock x:Name="LtftText"
+                                   Text="---"
+                                   FontSize="30"
+                                   FontWeight="SemiBold"
+                                   Foreground="{DynamicResource AccentBrush}"/>
+
+                        <TextBlock Text="%"
+                                   FontSize="10"
+                                   Foreground="{DynamicResource SecondaryTextBrush}"
+                                   VerticalAlignment="Bottom"
+                                   Margin="6,0,0,5"/>
+
+                    </StackPanel>
+                </StackPanel>
+
+            </Border>
+
+            <Border Grid.Row="1"
+                    Grid.Column="2"
+                    Margin="7,7,0,0"
+                    Padding="20"
+                    Background="{DynamicResource SurfaceBrush}"
+                    BorderBrush="{DynamicResource BorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="12">
+
+                <StackPanel>
+
+                    <TextBlock Text="OXYGEN SENSOR 1"
+                               FontSize="10"
+                               Foreground="{DynamicResource SecondaryTextBrush}"/>
+
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,12,0,0">
+
+                        <TextBlock x:Name="O2Text"
+                                   Text="---"
+                                   FontSize="30"
+                                   FontWeight="SemiBold"
+                                   Foreground="{DynamicResource AccentBrush}"/>
+
+                        <TextBlock Text="V"
+                                   FontSize="10"
+                                   Foreground="{DynamicResource SecondaryTextBrush}"
+                                   VerticalAlignment="Bottom"
+                                   Margin="6,0,0,5"/>
+
+                    </StackPanel>
+
+                    <TextBlock x:Name="O2TrimText"
+                               Text="Trim: ---"
+                               FontSize="10"
+                               Foreground="{DynamicResource SecondaryTextBrush}"
+                               Margin="0,4,0,0"/>
+
+                </StackPanel>
+
+            </Border>
+
+            <Border Grid.Row="2"
+                    Grid.Column="0"
+                    Margin="0,7,7,0"
+                    Padding="20"
+                    Background="{DynamicResource SurfaceBrush}"
+                    BorderBrush="{DynamicResource BorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="12">
+
+                <StackPanel>
+
+                    <TextBlock Text="MAF"
+                               FontSize="10"
+                               Foreground="{DynamicResource SecondaryTextBrush}"/>
+
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,12,0,0">
+
+                        <TextBlock x:Name="MafText"
+                                   Text="---"
+                                   FontSize="30"
+                                   FontWeight="SemiBold"
+                                   Foreground="{DynamicResource TextBrush}"/>
+
+                        <TextBlock Text="g/s"
+                                   FontSize="10"
+                                   Foreground="{DynamicResource SecondaryTextBrush}"
+                                   VerticalAlignment="Bottom"
+                                   Margin="6,0,0,5"/>
+
+                    </StackPanel>
+
+                </StackPanel>
+
+            </Border>
+
+            <Border Grid.Row="2"
+                    Grid.Column="1"
+                    Margin="7,7,7,0"
+                    Padding="20"
+                    Background="{DynamicResource SurfaceBrush}"
+                    BorderBrush="{DynamicResource BorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="12">
+
+                <StackPanel>
+
+                    <TextBlock Text="FUEL RATE"
+                               FontSize="10"
+                               Foreground="{DynamicResource SecondaryTextBrush}"/>
+
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,12,0,0">
+
+                        <TextBlock x:Name="FuelRateText"
+                                   Text="---"
+                                   FontSize="30"
+                                   FontWeight="SemiBold"
+                                   Foreground="{DynamicResource TextBrush}"/>
+
+                        <TextBlock Text="L/h"
+                                   FontSize="10"
+                                   Foreground="{DynamicResource SecondaryTextBrush}"
+                                   VerticalAlignment="Bottom"
+                                   Margin="6,0,0,5"/>
+
+                    </StackPanel>
+
+                </StackPanel>
+
+            </Border>
+
+            <Border Grid.Row="2"
+                    Grid.Column="2"
+                    Margin="7,7,0,0"
+                    Padding="20"
+                    Background="{DynamicResource SurfaceBrush}"
+                    BorderBrush="{DynamicResource BorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="12">
+
+                <StackPanel>
+
+                    <TextBlock Text="FUEL CONSUMPTION"
+                               FontSize="10"
+                               Foreground="{DynamicResource SecondaryTextBrush}"/>
+
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,12,0,0">
+
+                        <TextBlock x:Name="FuelConsumptionText"
+                                   Text="---"
+                                   FontSize="30"
+                                   FontWeight="SemiBold"
+                                   Foreground="{DynamicResource AccentBrush}"/>
+
+                        <TextBlock Text="L/h"
+                                   FontSize="10"
+                                   Foreground="{DynamicResource SecondaryTextBrush}"
+                                   VerticalAlignment="Bottom"
+                                   Margin="6,0,0,5"/>
+
+                    </StackPanel>
+
+                </StackPanel>
+
+            </Border>
+
+        </Grid>
+
+    </Grid>
+
+</UserControl>
