@@ -13,15 +13,35 @@
 
     <Window.Resources>
 
-        <SolidColorBrush x:Key="BackgroundBrush" Color="#0B0D0F"/>
-        <SolidColorBrush x:Key="SurfaceBrush" Color="#111417"/>
-        <SolidColorBrush x:Key="SurfaceHoverBrush" Color="#191E23"/>
-        <SolidColorBrush x:Key="BorderBrush" Color="#252A2F"/>
-        <SolidColorBrush x:Key="AccentBrush" Color="#FF4444"/>
-        <SolidColorBrush x:Key="TextBrush" Color="#E8EAED"/>
-        <SolidColorBrush x:Key="SecondaryTextBrush" Color="#7D858D"/>
-        <SolidColorBrush x:Key="SuccessBrush" Color="#00CC66"/>
-        <SolidColorBrush x:Key="DangerBrush" Color="#FF4444"/>
+        <SolidColorBrush x:Key="BackgroundBrush"
+                 Color="#0B1117"/>
+
+        <SolidColorBrush x:Key="SurfaceBrush"
+                 Color="#111A23"/>
+
+        <SolidColorBrush x:Key="SurfaceHoverBrush"
+                 Color="#182531"/>
+
+        <SolidColorBrush x:Key="BorderBrush"
+                 Color="#263441"/>
+
+        <SolidColorBrush x:Key="AccentBrush"
+                 Color="#2563EB"/>
+
+        <SolidColorBrush x:Key="TextBrush"
+                 Color="#EBF1F5"/>
+
+        <SolidColorBrush x:Key="SecondaryTextBrush"
+                 Color="#8B99A5"/>
+
+        <SolidColorBrush x:Key="SuccessBrush"
+                 Color="#22C55E"/>
+
+        <SolidColorBrush x:Key="DangerBrush"
+                 Color="#EF4444"/>
+
+        <SolidColorBrush x:Key="TitleBrush"
+                 Color="#D4E40F"/>
 
         <Style x:Key="NavButton" TargetType="Button">
             <Setter Property="Height" Value="42"/>
@@ -153,7 +173,7 @@
                     <TextBlock Text="{Binding [app_title]}"
                                FontSize="20"
                                FontWeight="SemiBold"
-                               Foreground="{DynamicResource AccentBrush}"/>
+                               Foreground="{DynamicResource TitleBrush}"/>
 
                     <TextBlock Text="{Binding [app_subtitle]}"
                                FontSize="9"
@@ -416,7 +436,7 @@
                                 Click="DashboardButton_Click">
 
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="◉"
+                                <TextBlock Text="💻"
                                            Width="28"
                                            Foreground="{DynamicResource AccentBrush}"
                                            FontSize="15"/>
@@ -448,7 +468,7 @@
                                 Click="SensorsButton_Click">
 
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="◈"
+                                <TextBlock Text="👁️"
                                            Width="28"
                                            Foreground="{DynamicResource AccentBrush}"
                                            FontSize="15"/>
@@ -508,12 +528,12 @@
 
             <Grid Margin="24,0">
 
-                <TextBlock x:Name="StatusDescription"
+                <!--<TextBlock x:Name="StatusDescription"
                            Text="Vehicle diagnostic system"
                            FontSize="9"
                            Foreground="{DynamicResource SecondaryTextBrush}"
                            VerticalAlignment="Center"
-                           HorizontalAlignment="Left"/>
+                           HorizontalAlignment="Left"/>-->
 
                 <StackPanel Orientation="Horizontal"
                            VerticalAlignment="Center"

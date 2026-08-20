@@ -113,7 +113,7 @@
                 <TextBlock Text="AutoScan"
                            FontSize="24"
                            FontWeight="SemiBold"
-                           Foreground="{DynamicResource AccentBrush}"/>
+                           Foreground="{DynamicResource TitleBrush}"/>
 
                 <TextBlock Text=" SETTINGS"
                            FontSize="24"

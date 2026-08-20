@@ -19,7 +19,7 @@
                     <TextBlock Text="AutoScan"
                                FontSize="22"
                                FontWeight="SemiBold"
-                               Foreground="{DynamicResource AccentBrush}"/>
+                               Foreground="{DynamicResource TitleBrush}"/>
 
                     <TextBlock Text=" DIAGNOSTICS"
                                FontSize="22"

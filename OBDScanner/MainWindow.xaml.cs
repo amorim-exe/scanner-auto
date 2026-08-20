@@ -372,8 +372,8 @@ public partial class MainWindow : Window
     }
 
     private void Theme_Click(
-        object sender,
-        RoutedEventArgs e)
+    object sender,
+    RoutedEventArgs e)
     {
         LocalizationService.Instance.ToggleTheme();
 
@@ -382,98 +382,121 @@ public partial class MainWindow : Window
 
         if (isDark)
         {
+            // ==============================
+            // DARK THEME
+            // ==============================
+
             Background =
                 new SolidColorBrush(
                     Color.FromRgb(
                         11,
-                        13,
-                        15));
+                        17,
+                        23));
 
             Foreground =
                 new SolidColorBrush(
                     Color.FromRgb(
-                        232,
-                        234,
-                        237));
+                        235,
+                        241,
+                        245));
 
-            ThemeButton.Content =
-                "☀";
+            ThemeButton.Content = "☀";
 
+            // Background
             Resources["BackgroundBrush"] =
                 new SolidColorBrush(
                     Color.FromRgb(
                         11,
-                        13,
-                        15));
+                        17,
+                        23));
 
+            // Cards / Surfaces
             Resources["SurfaceBrush"] =
                 new SolidColorBrush(
                     Color.FromRgb(
                         17,
-                        20,
-                        23));
+                        26,
+                        35));
 
+            // Hover
             Resources["SurfaceHoverBrush"] =
                 new SolidColorBrush(
                     Color.FromRgb(
-                        25,
-                        30,
-                        35));
+                        24,
+                        37,
+                        49));
 
+            // Borders
             Resources["BorderBrush"] =
                 new SolidColorBrush(
                     Color.FromRgb(
-                        37,
-                        42,
-                        47));
+                        38,
+                        52,
+                        65));
 
+            // Main text
             Resources["TextBrush"] =
                 new SolidColorBrush(
                     Color.FromRgb(
-                        232,
-                        234,
-                        237));
+                        235,
+                        241,
+                        245));
 
+            // Secondary text
             Resources["SecondaryTextBrush"] =
                 new SolidColorBrush(
                     Color.FromRgb(
-                        125,
-                        133,
-                        141));
+                        139,
+                        153,
+                        165));
 
+            // Azul principal
             Resources["AccentBrush"] =
                 new SolidColorBrush(
                     Color.FromRgb(
-                        255,
-                        68,
-                        68));
+                        37,
+                        99,
+                        235));
+
+            // Verde de status
+            Resources["SuccessBrush"] =
+                new SolidColorBrush(
+                    Color.FromRgb(
+                        34,
+                        197,
+                        94));
         }
         else
         {
+            // ==============================
+            // LIGHT THEME
+            // ==============================
+
             Background =
                 new SolidColorBrush(
                     Color.FromRgb(
                         244,
-                        246,
-                        248));
+                        247,
+                        250));
 
             Foreground =
                 new SolidColorBrush(
                     Color.FromRgb(
-                        25,
-                        28,
-                        32));
+                        20,
+                        30,
+                        40));
 
-            ThemeButton.Content =
-                "☾";
+            ThemeButton.Content = "☾";
 
+            // Background
             Resources["BackgroundBrush"] =
                 new SolidColorBrush(
                     Color.FromRgb(
                         244,
-                        246,
-                        248));
+                        247,
+                        250));
 
+            // Cards / Surfaces
             Resources["SurfaceBrush"] =
                 new SolidColorBrush(
                     Color.FromRgb(
@@ -481,40 +504,53 @@ public partial class MainWindow : Window
                         255,
                         255));
 
+            // Hover
             Resources["SurfaceHoverBrush"] =
                 new SolidColorBrush(
                     Color.FromRgb(
-                        235,
+                        232,
                         239,
-                        242));
+                        246));
 
+            // Borders
             Resources["BorderBrush"] =
                 new SolidColorBrush(
                     Color.FromRgb(
-                        215,
+                        211,
                         220,
-                        225));
+                        228));
 
+            // Main text
             Resources["TextBrush"] =
                 new SolidColorBrush(
                     Color.FromRgb(
-                        25,
-                        28,
-                        32));
+                        20,
+                        30,
+                        40));
 
+            // Secondary text
             Resources["SecondaryTextBrush"] =
                 new SolidColorBrush(
                     Color.FromRgb(
-                        95,
-                        103,
-                        112));
+                        91,
+                        105,
+                        118));
 
+            // Azul principal
             Resources["AccentBrush"] =
                 new SolidColorBrush(
                     Color.FromRgb(
-                        255,
-                        68,
-                        68));
+                        37,
+                        99,
+                        235));
+
+            // Verde de status
+            Resources["SuccessBrush"] =
+                new SolidColorBrush(
+                    Color.FromRgb(
+                        22,
+                        163,
+                        74));
         }
     }
 
