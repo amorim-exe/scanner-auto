@@ -17,10 +17,20 @@ public partial class SensorsView : UserControl
                 ? data.ThrottlePosition.ToString("N1")
                 : "---";
 
+        ThrottleProgress.Value =
+            data.ThrottleAvailable
+                ? Math.Clamp(data.ThrottlePosition, 0, 100)
+                : 0;
+
         MapText.Text =
             data.MapAvailable
                 ? data.MapPressure.ToString("N0")
                 : "---";
+
+        MapProgress.Value =
+            data.MapAvailable
+                ? Math.Clamp(data.MapPressure, 0, 255)
+                : 0;
 
         IatText.Text =
             data.IatAvailable

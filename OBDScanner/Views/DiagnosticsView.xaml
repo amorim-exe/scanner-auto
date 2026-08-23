@@ -3,12 +3,166 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              Background="Transparent">
 
+    <UserControl.Resources>
+
+        <!-- ===================================================== -->
+        <!-- BUTTON -->
+        <!-- ===================================================== -->
+
+        <Style x:Key="DiagnosticButton"
+               TargetType="Button">
+
+            <Setter Property="Background"
+                    Value="{DynamicResource SurfaceBrush}"/>
+
+            <Setter Property="Foreground"
+                    Value="{DynamicResource TextBrush}"/>
+
+            <Setter Property="BorderBrush"
+                    Value="{DynamicResource BorderBrush}"/>
+
+            <Setter Property="BorderThickness"
+                    Value="1"/>
+
+            <Setter Property="FontSize"
+                    Value="10"/>
+
+            <Setter Property="FontWeight"
+                    Value="SemiBold"/>
+
+            <Setter Property="Padding"
+                    Value="14,0"/>
+
+            <Setter Property="Cursor"
+                    Value="Hand"/>
+
+            <Setter Property="Template">
+
+                <Setter.Value>
+
+                    <ControlTemplate TargetType="Button">
+
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="7">
+
+                            <ContentPresenter
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+
+                        </Border>
+
+                    </ControlTemplate>
+
+                </Setter.Value>
+
+            </Setter>
+
+        </Style>
+
+
+        <!-- ===================================================== -->
+        <!-- CARD -->
+        <!-- ===================================================== -->
+
+        <Style x:Key="DiagnosticCard"
+               TargetType="Border">
+
+            <Setter Property="Background"
+                    Value="{DynamicResource SurfaceBrush}"/>
+
+            <Setter Property="BorderBrush"
+                    Value="{DynamicResource BorderBrush}"/>
+
+            <Setter Property="BorderThickness"
+                    Value="1"/>
+
+            <Setter Property="CornerRadius"
+                    Value="12"/>
+
+            <Setter Property="Padding"
+                    Value="16"/>
+
+            <Setter Property="Margin"
+                    Value="0,0,10,10"/>
+
+        </Style>
+
+
+        <!-- ===================================================== -->
+        <!-- LABEL -->
+        <!-- ===================================================== -->
+
+        <Style x:Key="DiagnosticLabel"
+               TargetType="TextBlock">
+
+            <Setter Property="FontSize"
+                    Value="10"/>
+
+            <Setter Property="FontWeight"
+                    Value="SemiBold"/>
+
+            <Setter Property="Foreground"
+                    Value="{DynamicResource SecondaryTextBrush}"/>
+
+        </Style>
+
+
+        <!-- ===================================================== -->
+        <!-- VALUE -->
+        <!-- ===================================================== -->
+
+        <Style x:Key="DiagnosticValue"
+               TargetType="TextBlock">
+
+            <Setter Property="FontSize"
+                    Value="22"/>
+
+            <Setter Property="FontWeight"
+                    Value="SemiBold"/>
+
+            <Setter Property="Foreground"
+                    Value="{DynamicResource TextBrush}"/>
+
+        </Style>
+
+
+        <!-- ===================================================== -->
+        <!-- PROGRESS BAR -->
+        <!-- ===================================================== -->
+
+        <Style x:Key="DiagnosticProgress"
+               TargetType="ProgressBar">
+
+            <Setter Property="Height"
+                    Value="7"/>
+
+            <Setter Property="Background"
+                    Value="{DynamicResource BorderBrush}"/>
+
+            <Setter Property="Foreground"
+                    Value="{DynamicResource TextBrush}"/>
+
+        </Style>
+
+    </UserControl.Resources>
+
+
     <Grid>
 
         <Grid.RowDefinitions>
+
             <RowDefinition Height="Auto"/>
+
             <RowDefinition Height="*"/>
+
         </Grid.RowDefinitions>
+
+
+        <!-- ===================================================== -->
+        <!-- HEADER -->
+        <!-- ===================================================== -->
 
         <Grid Margin="0,4,0,20">
 
@@ -28,72 +182,663 @@
 
                 </StackPanel>
 
-                <TextBlock Text="Diagnostic trouble codes stored in the ECU"
+                <TextBlock Text="Advanced engine and fuel-system diagnostics"
                            FontSize="11"
                            Foreground="{DynamicResource SecondaryTextBrush}"
                            Margin="0,4,0,0"/>
 
             </StackPanel>
 
+
+            <!-- CONNECTION STATUS -->
+
             <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Right">
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center">
 
-                <Button x:Name="ReadButton"
-                        Content="SCAN"
-                        Width="90"
-                        Height="36"
-                        Margin="0,0,8,0"
-                        Click="ReadButton_Click"/>
+                <Ellipse Width="8"
+                         Height="8"
+                         Fill="#42D392"
+                         Margin="0,0,7,0"/>
 
-                <Button x:Name="ClearButton"
-                        Content="CLEAR"
-                        Width="90"
-                        Height="36"
-                        Click="ClearButton_Click"/>
+                <TextBlock x:Name="ConnectionText"
+                           Text="Connected"
+                           FontSize="10"
+                           Foreground="{DynamicResource SecondaryTextBrush}"
+                           VerticalAlignment="Center"/>
 
             </StackPanel>
 
         </Grid>
 
-        <Border Grid.Row="1"
-                Background="{DynamicResource SurfaceBrush}"
-                BorderBrush="{DynamicResource BorderBrush}"
-                BorderThickness="1"
-                CornerRadius="12"
-                Padding="20">
 
-            <Grid>
+        <!-- ===================================================== -->
+        <!-- CONTENT -->
+        <!-- ===================================================== -->
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+        <ScrollViewer Grid.Row="1"
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled">
 
-                <Grid Margin="0,0,0,15">
+            <StackPanel>
 
-                    <TextBlock Text="FAULT CODES"
-                               FontSize="10"
-                               FontWeight="SemiBold"
-                               Foreground="{DynamicResource SecondaryTextBrush}"/>
 
-                    <TextBlock x:Name="StatusText"
-                               Text="No scan performed"
-                               HorizontalAlignment="Right"
-                               FontSize="10"
-                               Foreground="{DynamicResource SecondaryTextBrush}"/>
+                <!-- ================================================= -->
+                <!-- CONTROL BAR -->
+                <!-- ================================================= -->
+
+                <Border Style="{StaticResource DiagnosticCard}"
+                        Margin="0,0,0,10">
+
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+
+                            <ColumnDefinition/>
+
+                            <ColumnDefinition Width="Auto"/>
+
+                        </Grid.ColumnDefinitions>
+
+
+                        <!-- SESSION INFO -->
+
+                        <StackPanel>
+
+                            <TextBlock Text="DIAGNOSTIC SESSION"
+                                       Style="{StaticResource DiagnosticLabel}"/>
+
+                            <TextBlock x:Name="StageText"
+                                       Text="Ready"
+                                       FontSize="16"
+                                       FontWeight="SemiBold"
+                                       Foreground="{DynamicResource TextBrush}"
+                                       Margin="0,4,0,0"/>
+
+                            <TextBlock x:Name="TimerText"
+                                       Text="00:00"
+                                       FontSize="11"
+                                       Foreground="{DynamicResource SecondaryTextBrush}"
+                                       Margin="0,3,0,0"/>
+
+                        </StackPanel>
+
+
+                        <!-- CONTROLS -->
+
+                        <StackPanel Grid.Column="1"
+                                    Orientation="Horizontal"
+                                    VerticalAlignment="Center">
+
+                            <Button x:Name="StartButton"
+                                    Content="START"
+                                    Width="82"
+                                    Height="34"
+                                    Click="StartButton_Click"
+                                    Style="{StaticResource DiagnosticButton}"/>
+
+                            <Button x:Name="PauseButton"
+                                    Content="PAUSE"
+                                    Width="82"
+                                    Height="34"
+                                    Margin="7,0,0,0"
+                                    Click="PauseButton_Click"
+                                    IsEnabled="False"
+                                    Style="{StaticResource DiagnosticButton}"/>
+
+                            <Button x:Name="StopButton"
+                                    Content="STOP"
+                                    Width="82"
+                                    Height="34"
+                                    Margin="7,0,0,0"
+                                    Click="StopButton_Click"
+                                    IsEnabled="False"
+                                    Style="{StaticResource DiagnosticButton}"/>
+
+                            <Button x:Name="ReadButton"
+                                    Content="SCAN"
+                                    Width="82"
+                                    Height="34"
+                                    Margin="15,0,0,0"
+                                    Click="ReadButton_Click"
+                                    Style="{StaticResource DiagnosticButton}"/>
+
+                            <Button x:Name="ClearButton"
+                                    Content="CLEAR"
+                                    Width="82"
+                                    Height="34"
+                                    Margin="7,0,0,0"
+                                    Click="ClearButton_Click"
+                                    Style="{StaticResource DiagnosticButton}"/>
+
+                        </StackPanel>
+
+                    </Grid>
+
+                </Border>
+
+
+                <!-- ================================================= -->
+                <!-- LIVE DATA -->
+                <!-- ================================================= -->
+
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="*"/>
+
+                        <ColumnDefinition Width="*"/>
+
+                        <ColumnDefinition Width="*"/>
+
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+
+
+                    <!-- RPM -->
+
+                    <Border Grid.Column="0"
+                            Style="{StaticResource DiagnosticCard}">
+
+                        <StackPanel>
+
+                            <TextBlock Text="ENGINE SPEED"
+                                       Style="{StaticResource DiagnosticLabel}"/>
+
+                            <TextBlock x:Name="RpmText"
+                                       Text="---"
+                                       Style="{StaticResource DiagnosticValue}"
+                                       Margin="0,5,0,0"/>
+
+                            <TextBlock Text="RPM"
+                                       Style="{StaticResource DiagnosticLabel}"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+
+                    <!-- ECT -->
+
+                    <Border Grid.Column="1"
+                            Style="{StaticResource DiagnosticCard}">
+
+                        <StackPanel>
+
+                            <TextBlock Text="COOLANT"
+                                       Style="{StaticResource DiagnosticLabel}"/>
+
+                            <TextBlock x:Name="EctText"
+                                       Text="--- °C"
+                                       Style="{StaticResource DiagnosticValue}"
+                                       Margin="0,5,0,0"/>
+
+                            <TextBlock Text="ENGINE TEMPERATURE"
+                                       Style="{StaticResource DiagnosticLabel}"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+
+                    <!-- MAP -->
+
+                    <Border Grid.Column="2"
+                            Style="{StaticResource DiagnosticCard}">
+
+                        <StackPanel>
+
+                            <TextBlock Text="MAP"
+                                       Style="{StaticResource DiagnosticLabel}"/>
+
+                            <TextBlock x:Name="MapText"
+                                       Text="--- kPa"
+                                       Style="{StaticResource DiagnosticValue}"
+                                       Margin="0,5,0,0"/>
+
+                            <TextBlock Text="MANIFOLD PRESSURE"
+                                       Style="{StaticResource DiagnosticLabel}"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+
+                    <!-- TPS -->
+
+                    <Border Grid.Column="3"
+                            Style="{StaticResource DiagnosticCard}"
+                            Margin="0,0,0,10">
+
+                        <StackPanel>
+
+                            <TextBlock Text="THROTTLE"
+                                       Style="{StaticResource DiagnosticLabel}"/>
+
+                            <TextBlock x:Name="TpsText"
+                                       Text="--- %"
+                                       Style="{StaticResource DiagnosticValue}"
+                                       Margin="0,5,0,0"/>
+
+                            <TextBlock Text="TPS POSITION"
+                                       Style="{StaticResource DiagnosticLabel}"/>
+
+                        </StackPanel>
+
+                    </Border>
 
                 </Grid>
 
-                <ListBox x:Name="CodesList"
-                         Grid.Row="1"
-                         Background="Transparent"
-                         BorderThickness="0"
-                         Foreground="{DynamicResource TextBrush}"
-                         FontSize="14"/>
 
-            </Grid>
+                <!-- ================================================= -->
+                <!-- FUEL TRIM -->
+                <!-- ================================================= -->
 
-        </Border>
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="*"/>
+
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+
+
+                    <!-- STFT -->
+
+                    <Border Grid.Column="0"
+                            Style="{StaticResource DiagnosticCard}">
+
+                        <StackPanel>
+
+                            <TextBlock Text="SHORT TERM FUEL TRIM"
+                                       Style="{StaticResource DiagnosticLabel}"/>
+
+                            <TextBlock x:Name="StftText"
+                                       Text="--- %"
+                                       Style="{StaticResource DiagnosticValue}"
+                                       Margin="0,5,0,0"/>
+
+                            <ProgressBar x:Name="StftBar"
+                                         Style="{StaticResource DiagnosticProgress}"
+                                         Minimum="-30"
+                                         Maximum="30"
+                                         Value="0"
+                                         Margin="0,12,0,6"/>
+
+                            <TextBlock x:Name="StftStatus"
+                                       Text="Waiting for data..."
+                                       FontSize="10"
+                                       Foreground="{DynamicResource SecondaryTextBrush}"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+
+                    <!-- LTFT -->
+
+                    <Border Grid.Column="1"
+                            Style="{StaticResource DiagnosticCard}"
+                            Margin="0,0,0,10">
+
+                        <StackPanel>
+
+                            <TextBlock Text="LONG TERM FUEL TRIM"
+                                       Style="{StaticResource DiagnosticLabel}"/>
+
+                            <TextBlock x:Name="LtftText"
+                                       Text="--- %"
+                                       Style="{StaticResource DiagnosticValue}"
+                                       Margin="0,5,0,0"/>
+
+                            <ProgressBar x:Name="LtftBar"
+                                         Style="{StaticResource DiagnosticProgress}"
+                                         Minimum="-30"
+                                         Maximum="30"
+                                         Value="0"
+                                         Margin="0,12,0,6"/>
+
+                            <TextBlock x:Name="LtftStatus"
+                                       Text="Waiting for data..."
+                                       FontSize="10"
+                                       Foreground="{DynamicResource SecondaryTextBrush}"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+                </Grid>
+
+
+                <!-- ================================================= -->
+                <!-- O2 + LOAD -->
+                <!-- ================================================= -->
+
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="*"/>
+
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+
+
+                    <!-- O2 -->
+
+                    <Border Grid.Column="0"
+                            Style="{StaticResource DiagnosticCard}">
+
+                        <StackPanel>
+
+                            <TextBlock Text="OXYGEN SENSOR"
+                                       Style="{StaticResource DiagnosticLabel}"/>
+
+                            <TextBlock x:Name="O2Text"
+                                       Text="--- V"
+                                       Style="{StaticResource DiagnosticValue}"
+                                       Margin="0,5,0,0"/>
+
+                            <TextBlock Text="BANK 1 SENSOR 1"
+                                       Style="{StaticResource DiagnosticLabel}"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+
+                    <!-- LOAD -->
+
+                    <Border Grid.Column="1"
+                            Style="{StaticResource DiagnosticCard}"
+                            Margin="0,0,0,10">
+
+                        <StackPanel>
+
+                            <TextBlock Text="ENGINE LOAD"
+                                       Style="{StaticResource DiagnosticLabel}"/>
+
+                            <TextBlock x:Name="LoadText"
+                                       Text="--- %"
+                                       Style="{StaticResource DiagnosticValue}"
+                                       Margin="0,5,0,0"/>
+
+                            <TextBlock Text="CALCULATED LOAD"
+                                       Style="{StaticResource DiagnosticLabel}"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+                </Grid>
+
+
+                <!-- ================================================= -->
+                <!-- CURRENT STAGE -->
+                <!-- ================================================= -->
+
+                <Border Style="{StaticResource DiagnosticCard}">
+
+                    <StackPanel>
+
+                        <Grid>
+
+                            <TextBlock Text="CURRENT TEST STAGE"
+                                       Style="{StaticResource DiagnosticLabel}"/>
+
+                            <TextBlock x:Name="StageDescriptionText"
+                                       Text="No diagnostic test running."
+                                       HorizontalAlignment="Right"
+                                       FontSize="10"
+                                       Foreground="{DynamicResource SecondaryTextBrush}"/>
+
+                        </Grid>
+
+                        <ProgressBar x:Name="StageProgress"
+                                     Minimum="0"
+                                     Maximum="60"
+                                     Value="0"
+                                     Height="7"
+                                     Margin="0,12,0,0"
+                                     Style="{StaticResource DiagnosticProgress}"/>
+
+                    </StackPanel>
+
+                </Border>
+
+
+                <!-- ================================================= -->
+                <!-- SESSION STATISTICS -->
+                <!-- ================================================= -->
+
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="*"/>
+
+                        <ColumnDefinition Width="*"/>
+
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+
+
+                    <!-- SAMPLES -->
+
+                    <Border Grid.Column="0"
+                            Style="{StaticResource DiagnosticCard}">
+
+                        <StackPanel>
+
+                            <TextBlock Text="SAMPLES"
+                                       Style="{StaticResource DiagnosticLabel}"/>
+
+                            <TextBlock x:Name="SamplesText"
+                                       Text="0"
+                                       Style="{StaticResource DiagnosticValue}"
+                                       Margin="0,5,0,0"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+
+                    <!-- TIME -->
+
+                    <Border Grid.Column="1"
+                            Style="{StaticResource DiagnosticCard}">
+
+                        <StackPanel>
+
+                            <TextBlock Text="SESSION TIME"
+                                       Style="{StaticResource DiagnosticLabel}"/>
+
+                            <TextBlock x:Name="SessionTimeText"
+                                       Text="00:00"
+                                       Style="{StaticResource DiagnosticValue}"
+                                       Margin="0,5,0,0"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+
+                    <!-- DTC -->
+
+                    <Border Grid.Column="2"
+                            Style="{StaticResource DiagnosticCard}"
+                            Margin="0,0,0,10">
+
+                        <StackPanel>
+
+                            <TextBlock Text="DTCs"
+                                       Style="{StaticResource DiagnosticLabel}"/>
+
+                            <TextBlock x:Name="DtcCountText"
+                                       Text="0"
+                                       Style="{StaticResource DiagnosticValue}"
+                                       Margin="0,5,0,0"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+                </Grid>
+
+
+                <!-- ================================================= -->
+                <!-- STATUS / WARNINGS -->
+                <!-- ================================================= -->
+
+                <Border Style="{StaticResource DiagnosticCard}">
+
+                    <StackPanel>
+
+                        <TextBlock Text="DIAGNOSTIC OBSERVATIONS"
+                                   Style="{StaticResource DiagnosticLabel}"/>
+
+                        <TextBlock x:Name="DiagnosticStatusText"
+                                   Text="Waiting for diagnostic data..."
+                                   TextWrapping="Wrap"
+                                   Foreground="{DynamicResource TextBrush}"
+                                   FontSize="12"
+                                   Margin="0,8,0,0"/>
+
+                        <TextBlock x:Name="DiagnosticWarningText"
+                                   Text=""
+                                   TextWrapping="Wrap"
+                                   Foreground="#F5B942"
+                                   FontSize="11"
+                                   Margin="0,8,0,0"/>
+
+                    </StackPanel>
+
+                </Border>
+
+
+                <!-- ================================================= -->
+                <!-- PROCEDURE -->
+                <!-- ================================================= -->
+
+                <Border Style="{StaticResource DiagnosticCard}">
+
+                    <StackPanel>
+
+                        <TextBlock Text="DIAGNOSTIC PROCEDURE"
+                                   Style="{StaticResource DiagnosticLabel}"/>
+
+                        <TextBlock TextWrapping="Wrap"
+                                   FontSize="11"
+                                   Foreground="{DynamicResource SecondaryTextBrush}"
+                                   Margin="0,10,0,0">
+
+                            <Run Text="01  "/>
+                            <Run Text="Cold engine&#10;"/>
+
+                            <Run Text="02  "/>
+                            <Run Text="Idle - cold&#10;"/>
+
+                            <Run Text="03  "/>
+                            <Run Text="Warm-up&#10;"/>
+
+                            <Run Text="04  "/>
+                            <Run Text="Idle - warm&#10;"/>
+
+                            <Run Text="05  "/>
+                            <Run Text="2,000 RPM&#10;"/>
+
+                            <Run Text="06  "/>
+                            <Run Text="2,500 RPM&#10;"/>
+
+                            <Run Text="07  "/>
+                            <Run Text="Progressive acceleration&#10;"/>
+
+                            <Run Text="08  "/>
+                            <Run Text="Deceleration"/>
+
+                        </TextBlock>
+
+                    </StackPanel>
+
+                </Border>
+
+
+                <!-- ================================================= -->
+                <!-- DTC -->
+                <!-- ================================================= -->
+
+                <Border Style="{StaticResource DiagnosticCard}">
+
+                    <Grid>
+
+                        <Grid.RowDefinitions>
+
+                            <RowDefinition Height="Auto"/>
+
+                            <RowDefinition Height="*"/>
+
+                        </Grid.RowDefinitions>
+
+
+                        <Grid Margin="0,0,0,12">
+
+                            <TextBlock Text="FAULT CODES"
+                                       Style="{StaticResource DiagnosticLabel}"/>
+
+                            <TextBlock x:Name="StatusText"
+                                       Text="No scan performed"
+                                       HorizontalAlignment="Right"
+                                       Style="{StaticResource DiagnosticLabel}"/>
+
+                        </Grid>
+
+
+                        <ListBox x:Name="CodesList"
+                                 Grid.Row="1"
+                                 Background="Transparent"
+                                 BorderThickness="0"
+                                 Foreground="{DynamicResource TextBrush}"
+                                 FontSize="13"
+                                 MinHeight="100"/>
+
+                    </Grid>
+
+                </Border>
+
+
+                <!-- ================================================= -->
+                <!-- CSV -->
+                <!-- ================================================= -->
+
+                <Border Style="{StaticResource DiagnosticCard}"
+                        Margin="0,0,0,20">
+
+                    <StackPanel>
+
+                        <TextBlock Text="DIAGNOSTIC EXPORT"
+                                   Style="{StaticResource DiagnosticLabel}"/>
+
+                        <TextBlock x:Name="CsvPathText"
+                                   Text="No diagnostic session exported."
+                                   TextWrapping="Wrap"
+                                   FontSize="11"
+                                   Foreground="{DynamicResource SecondaryTextBrush}"
+                                   Margin="0,8,0,0"/>
+
+                    </StackPanel>
+
+                </Border>
+
+
+            </StackPanel>
+
+        </ScrollViewer>
 
     </Grid>
 

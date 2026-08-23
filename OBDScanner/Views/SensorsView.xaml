@@ -12,27 +12,39 @@
 
         <StackPanel Margin="0,4,0,20">
 
-            <StackPanel Orientation="Horizontal">
+            <Grid>
 
-                <TextBlock Text="AutoScan"
-                           FontSize="22"
-                           FontWeight="SemiBold"
-                           Foreground="{DynamicResource TitleBrush}"/>
+                <StackPanel Orientation="Horizontal">
 
-                <TextBlock Text=" SENSORS"
-                           FontSize="22"
-                           FontWeight="SemiBold"
-                           Foreground="{DynamicResource TextBrush}"/>
+                    <TextBlock Text="AutoScan"
+                               FontSize="26"
+                               FontWeight="SemiBold"
+                               Foreground="{DynamicResource TitleBrush}"/>
 
-            </StackPanel>
+                    <TextBlock Text=" SENSORS"
+                               FontSize="26"
+                               FontWeight="SemiBold"
+                               Foreground="{DynamicResource TextBrush}"/>
+
+                </StackPanel>
+
+                <Button Content="EXPORT DATA"
+                        Width="120"
+                        Height="36"
+                        HorizontalAlignment="Right"
+                        Style="{DynamicResource ActionButton}"/>
+
+            </Grid>
 
             <TextBlock Text="Live OBD2 sensor parameters"
-                       FontSize="11"
+                       FontSize="13"
                        Foreground="{DynamicResource SecondaryTextBrush}"
                        Margin="0,4,0,0"/>
 
         </StackPanel>
 
+
+        <!-- SENSOR GRID -->
         <Grid Grid.Row="1">
 
             <Grid.RowDefinitions>
@@ -47,6 +59,8 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
+
+            <!-- THROTTLE -->
             <Border Grid.Row="0"
                     Grid.Column="0"
                     Margin="0,0,7,7"
@@ -57,6 +71,7 @@
                     CornerRadius="12">
 
                 <StackPanel>
+
                     <TextBlock Text="THROTTLE POSITION"
                                FontSize="10"
                                Foreground="{DynamicResource SecondaryTextBrush}"/>
@@ -67,7 +82,8 @@
                         <TextBlock x:Name="ThrottleText"
                                    Text="---"
                                    FontSize="30"
-                                   FontWeight="SemiBold"/>
+                                   FontWeight="SemiBold"
+                                   Foreground="{DynamicResource TextBrush}"/>
 
                         <TextBlock Text="%"
                                    FontSize="10"
@@ -76,10 +92,22 @@
                                    Margin="6,0,0,5"/>
 
                     </StackPanel>
+
+                    <ProgressBar x:Name="ThrottleProgress"
+                                 Height="6"
+                                 Minimum="0"
+                                 Maximum="100"
+                                 Value="0"
+                                 Margin="0,8,0,0"
+                                 Foreground="{DynamicResource AccentBrush}"
+                                 Background="{DynamicResource BorderBrush}"/>
+
                 </StackPanel>
 
             </Border>
 
+
+            <!-- MAP -->
             <Border Grid.Row="0"
                     Grid.Column="1"
                     Margin="7,0"
@@ -90,6 +118,7 @@
                     CornerRadius="12">
 
                 <StackPanel>
+
                     <TextBlock Text="MAP PRESSURE"
                                FontSize="10"
                                Foreground="{DynamicResource SecondaryTextBrush}"/>
@@ -100,7 +129,8 @@
                         <TextBlock x:Name="MapText"
                                    Text="---"
                                    FontSize="30"
-                                   FontWeight="SemiBold"/>
+                                   FontWeight="SemiBold"
+                                   Foreground="{DynamicResource TextBrush}"/>
 
                         <TextBlock Text="kPa"
                                    FontSize="10"
@@ -109,10 +139,22 @@
                                    Margin="6,0,0,5"/>
 
                     </StackPanel>
+
+                    <ProgressBar x:Name="MapProgress"
+                                 Height="6"
+                                 Minimum="0"
+                                 Maximum="255"
+                                 Value="0"
+                                 Margin="0,8,0,0"
+                                 Foreground="{DynamicResource AccentBrush}"
+                                 Background="{DynamicResource BorderBrush}"/>
+
                 </StackPanel>
 
             </Border>
 
+
+            <!-- IAT -->
             <Border Grid.Row="0"
                     Grid.Column="2"
                     Margin="7,0,0,7"
@@ -123,6 +165,7 @@
                     CornerRadius="12">
 
                 <StackPanel>
+
                     <TextBlock Text="INTAKE AIR TEMP"
                                FontSize="10"
                                Foreground="{DynamicResource SecondaryTextBrush}"/>
@@ -133,7 +176,8 @@
                         <TextBlock x:Name="IatText"
                                    Text="---"
                                    FontSize="30"
-                                   FontWeight="SemiBold"/>
+                                   FontWeight="SemiBold"
+                                   Foreground="{DynamicResource TextBrush}"/>
 
                         <TextBlock Text="°C"
                                    FontSize="10"
@@ -142,10 +186,13 @@
                                    Margin="6,0,0,5"/>
 
                     </StackPanel>
+
                 </StackPanel>
 
             </Border>
 
+
+            <!-- STFT -->
             <Border Grid.Row="1"
                     Grid.Column="0"
                     Margin="0,7,7,0"
@@ -156,6 +203,7 @@
                     CornerRadius="12">
 
                 <StackPanel>
+
                     <TextBlock Text="STFT BANK 1"
                                FontSize="10"
                                Foreground="{DynamicResource SecondaryTextBrush}"/>
@@ -167,7 +215,7 @@
                                    Text="---"
                                    FontSize="30"
                                    FontWeight="SemiBold"
-                                   Foreground="{DynamicResource AccentBrush}"/>
+                                   Foreground="{DynamicResource TitleBrush}"/>
 
                         <TextBlock Text="%"
                                    FontSize="10"
@@ -176,10 +224,13 @@
                                    Margin="6,0,0,5"/>
 
                     </StackPanel>
+
                 </StackPanel>
 
             </Border>
 
+
+            <!-- LTFT -->
             <Border Grid.Row="1"
                     Grid.Column="1"
                     Margin="7,7,7,0"
@@ -190,6 +241,7 @@
                     CornerRadius="12">
 
                 <StackPanel>
+
                     <TextBlock Text="LTFT BANK 1"
                                FontSize="10"
                                Foreground="{DynamicResource SecondaryTextBrush}"/>
@@ -201,7 +253,7 @@
                                    Text="---"
                                    FontSize="30"
                                    FontWeight="SemiBold"
-                                   Foreground="{DynamicResource AccentBrush}"/>
+                                   Foreground="{DynamicResource TitleBrush}"/>
 
                         <TextBlock Text="%"
                                    FontSize="10"
@@ -210,10 +262,13 @@
                                    Margin="6,0,0,5"/>
 
                     </StackPanel>
+
                 </StackPanel>
 
             </Border>
 
+
+            <!-- O2 -->
             <Border Grid.Row="1"
                     Grid.Column="2"
                     Margin="7,7,0,0"
@@ -236,7 +291,7 @@
                                    Text="---"
                                    FontSize="30"
                                    FontWeight="SemiBold"
-                                   Foreground="{DynamicResource AccentBrush}"/>
+                                   Foreground="{DynamicResource TitleBrush}"/>
 
                         <TextBlock Text="V"
                                    FontSize="10"
@@ -256,6 +311,8 @@
 
             </Border>
 
+
+            <!-- MAF -->
             <Border Grid.Row="2"
                     Grid.Column="0"
                     Margin="0,7,7,0"
@@ -292,6 +349,8 @@
 
             </Border>
 
+
+            <!-- FUEL RATE -->
             <Border Grid.Row="2"
                     Grid.Column="1"
                     Margin="7,7,7,0"
@@ -328,6 +387,8 @@
 
             </Border>
 
+
+            <!-- FUEL CONSUMPTION -->
             <Border Grid.Row="2"
                     Grid.Column="2"
                     Margin="7,7,0,0"
@@ -350,7 +411,7 @@
                                    Text="---"
                                    FontSize="30"
                                    FontWeight="SemiBold"
-                                   Foreground="{DynamicResource AccentBrush}"/>
+                                   Foreground="{DynamicResource TitleBrush}"/>
 
                         <TextBlock Text="L/h"
                                    FontSize="10"

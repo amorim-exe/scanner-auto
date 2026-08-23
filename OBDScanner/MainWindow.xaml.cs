@@ -3,6 +3,7 @@ using System;
 using System.IO.Ports;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
 
@@ -268,9 +269,6 @@ public partial class MainWindow : Window
 
         SensorsButton.Background =
             Brushes.Transparent;
-
-        StatusDescription.Text =
-            "Vehicle overview and live engine data";
     }
 
     private void ShowDiagnostics()
@@ -295,8 +293,6 @@ public partial class MainWindow : Window
         SensorsButton.Background =
             Brushes.Transparent;
 
-        StatusDescription.Text =
-            "Diagnostic trouble codes";
     }
 
     private void ShowSensors()
@@ -320,8 +316,6 @@ public partial class MainWindow : Window
             (Brush)FindResource(
                 "SurfaceHoverBrush");
 
-        StatusDescription.Text =
-            "Live OBD2 sensor data";
     }
 
     private void DashboardButton_Click(
@@ -367,8 +361,6 @@ public partial class MainWindow : Window
         SensorsButton.Background =
             Brushes.Transparent;
 
-        StatusDescription.Text =
-            "Application and scanner configuration";
     }
 
     private void Theme_Click(
@@ -450,21 +442,21 @@ public partial class MainWindow : Window
                         153,
                         165));
 
-            // Azul principal
+            // Vermelho principal
             Resources["AccentBrush"] =
                 new SolidColorBrush(
                     Color.FromRgb(
-                        37,
-                        99,
-                        235));
+                        255,
+                        68,
+                        68));
 
             // Verde de status
             Resources["SuccessBrush"] =
                 new SolidColorBrush(
                     Color.FromRgb(
-                        34,
-                        197,
-                        94));
+                        0,
+                        204,
+                        102));
         }
         else
         {
@@ -552,6 +544,53 @@ public partial class MainWindow : Window
                         163,
                         74));
         }
+    }
+
+    private void WindowHeader_MouseLeftButtonDown(
+    object sender,
+    MouseButtonEventArgs e)
+    {
+        if (e.LeftButton == MouseButtonState.Pressed)
+        {
+            try
+            {
+                DragMove();
+            }
+            catch
+            {
+                // Ignora se a janela estiver em uma operação de resize.
+            }
+        }
+    }
+
+    private void MinimizeButton_Click(
+        object sender,
+        RoutedEventArgs e)
+    {
+        WindowState = WindowState.Minimized;
+    }
+
+    private void MaximizeButton_Click(
+        object sender,
+        RoutedEventArgs e)
+    {
+        if (WindowState == WindowState.Maximized)
+        {
+            WindowState = WindowState.Normal;
+            MaximizeButton.Content = "□";
+        }
+        else
+        {
+            WindowState = WindowState.Maximized;
+            MaximizeButton.Content = "❐";
+        }
+    }
+
+    private void CloseButton_Click(
+        object sender,
+        RoutedEventArgs e)
+    {
+        Close();
     }
 
     private void Portuguese_Click(

@@ -318,6 +318,193 @@ public class ObdService : IDisposable
         }
     }
 
+    public DiagnosticSample ReadDiagnosticSampleFast(
+    string sessionId,
+    string stage)
+    {
+        if (!IsConnected)
+        {
+            throw new InvalidOperationException(
+                "OBD adapter is not connected.");
+        }
+
+        var sample = new DiagnosticSample
+        {
+            Timestamp = DateTime.Now,
+            SessionId = sessionId,
+            TestStage = stage
+        };
+
+        var rpm = ReadPid("010C");
+
+        if (rpm.Length >= 2)
+            sample.RPM =
+                ((rpm[0] * 256) + rpm[1]) / 4.0;
+
+        var ect = ReadPid("0105");
+
+        if (ect.Length >= 1)
+            sample.ECT =
+                ect[0] - 40;
+
+        var map = ReadPid("010B");
+
+        if (map.Length >= 1)
+            sample.MAP =
+                map[0];
+
+        var tps = ReadPid("0111");
+
+        if (tps.Length >= 1)
+            sample.TPS =
+                tps[0] * 100.0 / 255.0;
+
+        var stft = ReadPid("0106");
+
+        if (stft.Length >= 1)
+            sample.STFT =
+                (stft[0] - 128) * 100.0 / 128.0;
+
+        var ltft = ReadPid("0107");
+
+        if (ltft.Length >= 1)
+            sample.LTFT =
+                (ltft[0] - 128) * 100.0 / 128.0;
+
+        var o2 = ReadPid("0114");
+
+        if (o2.Length >= 1)
+            sample.O2B1S1 =
+                o2[0] / 200.0;
+
+        var load = ReadPid("0104");
+
+        if (load.Length >= 1)
+            sample.EngineLoad =
+                load[0] * 100.0 / 255.0;
+
+        sample.FuelSystemStatus =
+            ReadFuelSystemStatus();
+
+        return sample;
+    }
+
+    public DiagnosticSample ReadDiagnosticSample(
+    string sessionId,
+    string stage)
+    {
+        if (!IsConnected)
+        {
+            throw new InvalidOperationException(
+                "OBD adapter is not connected.");
+        }
+
+        var data = ReadLiveData();
+
+        var sample = new DiagnosticSample
+        {
+            Timestamp = DateTime.Now,
+            SessionId = sessionId,
+            TestStage = stage,
+
+            RPM = data.RpmAvailable
+                ? data.Rpm
+                : null,
+
+            Speed = data.SpeedAvailable
+                ? data.Speed
+                : null,
+
+            ECT = data.CoolantAvailable
+                ? data.CoolantTemperature
+                : null,
+
+            IAT = data.IatAvailable
+                ? data.IntakeAirTemperature
+                : null,
+
+            MAP = data.MapAvailable
+                ? data.MapPressure
+                : null,
+
+            MAF = data.MafAvailable
+                ? data.Maf
+                : null,
+
+            TPS = data.ThrottleAvailable
+                ? data.ThrottlePosition
+                : null,
+
+            STFT = data.StftAvailable
+                ? data.StftBank1
+                : null,
+
+            LTFT = data.LtftAvailable
+                ? data.LtftBank1
+                : null,
+
+            O2B1S1 = data.O2Sensor1Available
+                ? data.O2Sensor1Voltage
+                : null,
+
+            O2B1S2 = data.O2Sensor2Available
+                ? data.O2Sensor2Voltage
+                : null,
+
+            EngineLoad = data.LoadAvailable
+                ? data.EngineLoad
+                : null,
+
+            FuelSystemStatus = ReadFuelSystemStatus(),
+
+            FuelPressure = ReadFuelPressure(),
+
+            TimingAdvance = ReadTimingAdvance()
+        };
+
+        return sample;
+    }
+
+    public string ReadFuelSystemStatus()
+    {
+        var bytes = ReadPid("0103");
+
+        if (bytes.Length < 1)
+            return string.Empty;
+
+        return bytes[0] switch
+        {
+            0x01 => "OPEN_LOOP_COLD",
+            0x02 => "CLOSED_LOOP",
+            0x04 => "OPEN_LOOP_LOAD",
+            0x08 => "OPEN_LOOP_DECELERATION",
+            0x10 => "OPEN_LOOP_SYSTEM_FAILURE",
+            _ => $"UNKNOWN_0x{bytes[0]:X2}"
+        };
+    }
+
+    public double? ReadFuelPressure()
+    {
+        var bytes = ReadPid("010A");
+
+        if (bytes.Length < 1)
+            return null;
+
+        // Fuel pressure PID 0x0A = 3 * A kPa
+        return bytes[0] * 3.0;
+    }
+
+    public double? ReadTimingAdvance()
+    {
+        var bytes = ReadPid("010E");
+
+        if (bytes.Length < 1)
+            return null;
+
+        // Timing advance = A / 2 - 64
+        return bytes[0] / 2.0 - 64.0;
+    }
+
     private byte[] ReadPid(string command)
     {
         try

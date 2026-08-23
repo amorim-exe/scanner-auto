@@ -15,19 +15,19 @@
             <StackPanel Orientation="Horizontal">
 
                 <TextBlock Text="AutoScan"
-                           FontSize="22"
+                           FontSize="26"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource TitleBrush}"/>
 
                 <TextBlock Text=" DASHBOARD"
-                           FontSize="22"
+                           FontSize="26"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource TextBrush}"/>
 
             </StackPanel>
 
             <TextBlock Text="Vehicle overview and live engine data"
-                       FontSize="11"
+                       FontSize="13"
                        Foreground="{DynamicResource SecondaryTextBrush}"
                        Margin="0,4,0,0"/>
 
@@ -73,7 +73,7 @@
                                        Text="---"
                                        FontSize="76"
                                        FontWeight="SemiBold"
-                                       Foreground="{DynamicResource AccentBrush}"/>
+                                       Foreground="{DynamicResource TitleBrush}"/>
 
                             <TextBlock Text="RPM"
                                        FontSize="14"
@@ -244,7 +244,7 @@
                                        Text="---"
                                        FontSize="30"
                                        FontWeight="SemiBold"
-                                       Foreground="{DynamicResource AccentBrush}"/>
+                                       Foreground="{DynamicResource TitleBrush}"/>
 
                             <TextBlock Text="km/L"
                                        FontSize="10"
