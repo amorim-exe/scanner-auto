@@ -392,7 +392,7 @@ public partial class MainWindow : Window
                         241,
                         245));
 
-            ThemeButton.Content = "☀";
+            //ThemeButton.Content = "☀";
 
             // Background
             Resources["BackgroundBrush"] =
@@ -478,7 +478,7 @@ public partial class MainWindow : Window
                         30,
                         40));
 
-            ThemeButton.Content = "☾";
+            //ThemeButton.Content = "☾";
 
             // Background
             Resources["BackgroundBrush"] =
